@@ -14,7 +14,7 @@ export const getKitty = () => dispatch => {
         dispatch(fetchImageSuccess(res.data[0].url));
     })
     .catch((err) => {
-        console.log(err);
+        dispatch(fetchImageFail(err.Response.code));
     })
 };
 
@@ -26,6 +26,6 @@ export const fetchImageSuccess = (image) => {
     return ({ type: FETCH_IMAGE_SUCCESS, payload: image });
 };
 
-export const fetchImageFail = () => {
-    return ({ type: FETCH_IMAGE_FAIL });
+export const fetchImageFail = (error) => {
+    return ({ type: FETCH_IMAGE_FAIL, payload: error });
 };

@@ -11,9 +11,9 @@ function GenerateCat (props) {
         props.getKitty();
     };
 
-    // useEffect(() => {
-    //     props.getKitty();
-    // }, []);
+    useEffect(() => {
+        props.getKitty();
+    }, []);
 
     if (props.error) {
         return (
@@ -29,8 +29,8 @@ function GenerateCat (props) {
 
     return (
         <StyledContainerDiv>
-            <div>hello from generate cats!</div>
-            <button onClick={handleClick}>Give Me A Kitty!</button>
+            <div><img src={props.imageUrl} alt='a very cool cat' /></div>
+            <StyledKittyButton onClick={handleClick}>Give Me A Kitty!</StyledKittyButton>
         </StyledContainerDiv>
     );
 };
@@ -46,5 +46,27 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, { getKitty })(GenerateCat);
 
 const StyledContainerDiv = styled.div`
-    border: solid 1px blue;
+    // border: solid 1px blue;
+
+    img {
+        width: 80%;
+        margin-top: 3%;
+    }
+`;
+
+const StyledKittyButton = styled.button`
+    margin-top: 2%;
+    font-size: 1em;
+    padding: 1% 3% 1% 3%;
+    transition: .3s;
+    border: none;
+    background-color: white;
+    border: solid 2px #a50000;
+    color: #a50000;
+    cursor: pointer;
+
+    :hover {
+        background-color: #a50000;
+        color: white;
+    }
 `;
